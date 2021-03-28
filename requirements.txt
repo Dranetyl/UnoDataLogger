@@ -1,0 +1,7 @@
+matplotlib==3.2.2
+matplotlib_backend_qtquick
+pyperclip
+pyserial
+PySide2==5.15.1
+
+
