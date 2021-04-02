@@ -19,6 +19,7 @@ You can save data to text file or chart image
 
 Source:
 https://github.com/Dranetyl/UnoDataLogger
+
 Binary:
 https://sourceforge.net/projects/unodatalogger/files/
 Licence:
