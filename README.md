@@ -10,13 +10,13 @@ Unodatalogger is software for arduino to acquire data over time. You can acquire
 Work under windows or linux ( tested on linux mint 19)
 
 # Setup the Arduino
-Connect arduino uno to pc with usb cable CHR(10)
+Connect arduino uno to pc with usb cable  <br>
 Upload example or modify sketch
 
 # Run software on PC.
-Choose serial port.
+Choose serial port. <br>
 
-Connect arduino
+Connect arduino <br>
 
 Choose sampling time and numbers of points.
 Run
