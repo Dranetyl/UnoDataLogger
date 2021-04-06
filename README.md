@@ -14,7 +14,7 @@ Connect arduino uno to pc with usb cable
 Upload example or modify sketch
 
 # Run software on PC.
-Choose serial port.
+Choose serial port. \n
 Connect arduino
 Choose sampling time and numbers of points.
 Run
