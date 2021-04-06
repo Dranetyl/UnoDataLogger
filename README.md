@@ -9,12 +9,14 @@ software for acquire data with arduino on pc
 
 Unodatalogger is software for arduino to acquire data over time. You can acquire the voltage or the value of a sensor. (temperature, humidity,light….)
 Work under windows or linux ( tested on linux mint 19)
-Setup the Arduino
+
+# Setup the Arduino
 Connect arduino uno to pc with usb cable
 Upload example or modify sketch
 
-Run software on PC.
+# Run software on PC.
 Choose sampling time and numbers of points.
+Run
 You can save data to text file or chart image
 
 Source:
