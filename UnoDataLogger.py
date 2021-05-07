@@ -12,13 +12,7 @@ from matplotlib_backend_qtquick.backend_qtquickagg import (
 import matplotlib.pyplot as plt
 from qml import arduinoUno
 import serial.tools.list_ports
-
 plt.style.use("seaborn-darkgrid")
-
-global tableauTemps
-tableauTemps = []
-global tableauDonnee1
-tableauDonnee1 = []
 
 class UnoDataLogger(QtCore.QObject):
     coordinatesChanged = QtCore.Signal(str)
@@ -43,8 +37,6 @@ class UnoDataLogger(QtCore.QObject):
 
 
     def createcanvas(self, canvas):
-        """ initialize with the canvas for the figure
-                """
         self.figure = canvas.figure
         self.toolbar = NavigationToolbar2QtQuick(canvas=canvas)
         self._coordinates = "0,0"
@@ -145,6 +137,7 @@ class UnoDataLogger(QtCore.QObject):
                 etat = "Arduino found : " + str(self.arduino.ports)
                 self.btn_disconnect.setProperty('enabled', True)
                 self.btn_connect.setProperty('enabled', False)
+                self.startButton.setProperty('enabled', True)
                 self.arduino.flush()
             except:
                 etat = "Arduino not found"

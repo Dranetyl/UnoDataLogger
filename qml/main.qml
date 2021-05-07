@@ -2,10 +2,7 @@ import QtQuick 2.7
 import QtQuick.Controls 2.7
 import QtQuick.Window 2.7
 import QtQuick.Layouts 1.10
-import Backend 1.0
 import QtQuick.Controls.Material 2.0
-
-
 
 
 ApplicationWindow {
@@ -21,12 +18,10 @@ ApplicationWindow {
 
 
     onWidthChanged: {
-        // Will be executed after window.width value changes.
         unoDataLogger.tight()
     }
 
     onHeightChanged: {
-        // Will be executed after window.height value changes.
         unoDataLogger.tight()
     }
     FontLoader {
@@ -36,15 +31,30 @@ ApplicationWindow {
     font.family: roboto.name
 
 
-
     menuBar:
-
         MenuBar {
         id : menubar
         Material.theme: Material.Dark
         Material.background : "#646464"
-        Menu {
+        /*
+       MenuBarItem
+              {
+             id: menuBarItem
+             contentItem:
+                      Image{
+                        //anchors.fill:parent
+                        //height: menubar.height
+                        source: "home.png"
+                        MouseArea{
+                            anchors.fill:parent
+                            onClicked: drawer.open()
+                        }
 
+                  }
+
+              }
+        */
+        Menu {
             width: {
                 var result = 0;
                 var padding = 0;
@@ -55,18 +65,15 @@ ApplicationWindow {
                 }
                 return result + padding * 2;
             }
-            title: qsTr("Menu  ")
-
-
+            title: qsTr("Menu")
 
             MenuItem {
                 text: qsTr("  Quit       ")
                 onTriggered: unoDataLogger.quitter()
             }
-
         }
         Menu {
-         width: {
+            width: {
                 var result = 0;
                 var padding = 0;
                 for (var i = 0; i < count; ++i) {
@@ -83,6 +90,7 @@ ApplicationWindow {
             MenuItem {
                 text: qsTr("Save Text Result in \Documents")
                 onTriggered: unoDataLogger.notepad()
+
             }
             MenuItem {
                 text: qsTr("Save figure in \Documents")
@@ -94,6 +102,7 @@ ApplicationWindow {
 
             title: qsTr("Chart option")
             id : menuOption2
+
             MenuItem {
                 text: qsTr("Title")
                 onTriggered: popup2.open()
@@ -107,9 +116,7 @@ ApplicationWindow {
             MenuItem {
                 text: qsTr("Redraw")
                 onTriggered: unoDataLogger.redraw()
-              }
-
-
+            }
 
         }
         Menu {
@@ -118,17 +125,12 @@ ApplicationWindow {
                 text: qsTr("About")
                 onTriggered: popup.open()
             }
-
-
         }
     }
 
-
     Item {
-        id: frame8
+        id: frame
         anchors.fill: parent
-
-
         GroupBox {
             id: groupboxgraph
             width: 675
@@ -141,7 +143,6 @@ ApplicationWindow {
             anchors.bottomMargin: 0
             anchors.topMargin: 8
             background: Rectangle {
-
                 border.color: "transparent"
                 radius: 2
             }
@@ -153,30 +154,23 @@ ApplicationWindow {
                 anchors.topMargin: -17
                 anchors.rightMargin: -7
                 anchors.bottomMargin: 51
-
                 font.family: "Courier"
                 font.capitalization: Font.AllLowercase
-
                 background: Rectangle {
-
                     border.color: "transparent"
                     radius: 2
                 }
-
-                FigureCanvas {
-                    id: mplView
-                    objectName : "figure"
-                    anchors.bottomMargin: 0
-
-
+                Loader {
+                    source: "chart.qml"
+                    anchors.leftMargin: -12
+                    anchors.rightMargin: -12
+                    anchors.bottomMargin: -12
                     anchors.left: parent.left
                     anchors.right: parent.right
                     anchors.bottom: parent.bottom
                     anchors.topMargin: -12
                     anchors.top: parent.top
-
                 }
-
 
             }
             RowLayout {
@@ -184,10 +178,7 @@ ApplicationWindow {
                 anchors.bottom: parent.bottom
                 spacing: 8
                 anchors.bottomMargin: 0
-
                 Rectangle {
-                    id: rectangle
-
                     color: "#ffffff"
                     Layout.fillHeight: true
                     Layout.fillWidth: true
@@ -217,7 +208,6 @@ ApplicationWindow {
 
 
                 ToolSeparator{}
-
                 Button {
                     id: pan
                     text: qsTr("")
@@ -237,8 +227,6 @@ ApplicationWindow {
                     text: qsTr("")
                     icon.source: "zoom.png"
                     Material.background: Material.White
-
-
                     checkable: true
                     onClicked: {
                         if (pan.checked) {
@@ -261,18 +249,12 @@ ApplicationWindow {
 
                     }}
 
-
-
-
-
             }
 
         }
 
-
-
         GroupBox {
-            id: acquisition
+            id: groupBox_Acquisition
             width: 318
             anchors.left: parent.left
             anchors.top: parent.top
@@ -280,16 +262,9 @@ ApplicationWindow {
             anchors.topMargin: 219
             anchors.bottomMargin: 14
             anchors.leftMargin: 0
-
             contentHeight: -2
             z: 1
             title: qsTr("")
-
-            background: Rectangle {
-
-                border.color: "transparent"
-                radius: 2
-            }
 
             Button {
                 y: 180
@@ -309,9 +284,7 @@ ApplicationWindow {
                 Layout.columnSpan: 2
                 Material.background: Material.Cyan
                 onClicked: {
-
                     btnstart.enabled = false
-
                     unoDataLogger.runacq(nombreDePoints.text, tempsDechantillonge.text)
                 }
             }
@@ -345,7 +318,6 @@ ApplicationWindow {
                 }
 
                 Rectangle {
-
                     color: "#ffffff"
                     anchors.rightMargin: 0
                     anchors.leftMargin: 0
@@ -413,15 +385,6 @@ ApplicationWindow {
                 }
             }
 
-            Rectangle {
-                color: "#999999"
-                anchors.rightMargin: -12
-                anchors.leftMargin: -12
-                anchors.bottomMargin: -12
-                anchors.topMargin: -12
-                z: -1
-                anchors.fill: parent
-            }
 
             Label {
                 id: label1
@@ -432,6 +395,7 @@ ApplicationWindow {
                 text: qsTr("Total time in s:")
             }
 
+
             Label {
                 id: totaltime
                 x: 180
@@ -440,9 +404,15 @@ ApplicationWindow {
                 height: 27
                 text: ((parseInt(nombreDePoints.text)-1) * parseInt(tempsDechantillonge.text))/1000
             }
-
-
-
+            Rectangle {
+                color: "#999999"
+                anchors.rightMargin: -12
+                anchors.leftMargin: -12
+                anchors.bottomMargin: -12
+                anchors.topMargin: -12
+                z: -1
+                anchors.fill: parent
+            }
         }
         GroupBox {
             id: groupBox_Arduino
@@ -454,12 +424,10 @@ ApplicationWindow {
             anchors.topMargin: 15
             anchors.left: parent.left
             anchors.leftMargin: 0
-
             anchors.bottomMargin: 0
             contentHeight: -2
             z: 1
             title: qsTr("")
-
 
             Label {
                 id: label
@@ -467,7 +435,7 @@ ApplicationWindow {
                 y: -7
                 width: 215
                 height: 23
-                text: qsTr("Select port com:")
+                text: qsTr("Select serial port:")
             }
 
             ComboBox {
@@ -512,12 +480,10 @@ ApplicationWindow {
                 anchors.verticalCenter: parent.verticalCenter
                 Material.background: Material.White
                 onClicked: {
-
                     unoDataLogger.arduinoDisconnect()
                     label4.text = " "
                     btnstart.enabled = false
                 }
-
             }
 
             Button {
@@ -529,13 +495,8 @@ ApplicationWindow {
                 anchors.left: parent.left
                 anchors.verticalCenterOffset: 33
                 anchors.leftMargin: 7
-                //Material.background: Material.Grey
                 onClicked: {
-
                     label4.text = unoDataLogger.arduinoConnect()
-                    btnstart.enabled = true
-
-
                 }
             }
 
@@ -552,41 +513,35 @@ ApplicationWindow {
         }
 
         Popup {
-               id: popup
-               anchors.centerIn: parent
-               width: 500
-               height: 300
-               modal: true
-               focus: true
-               Loader {
-                   id: myLoader
-                   anchors.fill: parent
-                   source: "Screen01.qml"
-               }
-               closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
-           }
+            id: popup
+            anchors.centerIn: parent
+            width: 500
+            height: 300
+            modal: true
+            focus: true
+            Loader {
+                id: myLoader
+                anchors.fill: parent
+                source: "Screen01.qml"
+            }
+            closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
+        }
 
         Popup {
-               id: popup2
-               anchors.centerIn: parent
-               width: 500
-               height: 300
-               modal: true
-               focus: true
-               Loader {
-                   id: myLoader2
-                   anchors.fill: parent
-                   source: "Popup_graph.qml"
-               }
-               closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
-           }
-
-
-
+            id: popup2
+            anchors.centerIn: parent
+            width: 500
+            height: 300
+            modal: true
+            focus: true
+            Loader {
+                id: myLoader2
+                anchors.fill: parent
+                source: "Popup_graph.qml"
+            }
+            closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
+        }
     }
-
-
-
 
 }
 

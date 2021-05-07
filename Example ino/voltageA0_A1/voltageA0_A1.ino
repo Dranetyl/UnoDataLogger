@@ -29,8 +29,8 @@ void loop() {
       Serial.print(duration);    // time
       Serial.print(";");
       Serial.print(analogRead(A0) * 5 / 1023.00);  //first value
-      //Serial.print(";");
-      //Serial.print(analogRead(A1) * 5 / 1023.00); //second value
+      Serial.print(";");
+      Serial.print(analogRead(A1) * 5 / 1023.00); //second value
       Serial.println();
     }
   }

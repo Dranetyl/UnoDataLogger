@@ -1,0 +1,3 @@
+{
+    "files": ["UnoDataLogger.py","requirements.txt","qml/Roboto-Light.ttf","qml/Roboto-Black.ttf","qml/qb-common.mplstyle","Example ino/voltageA0_A1/voltageA0_A1.ino","qml/Roboto-Regular.ttf","qml/Popup_graph.qml.autosave","qml/Screen01.qml","qml/Papirus-Team-Papirus-Apps-Arduino.ico","qml/arduino.jpg","install","Example ino/voltageA0/voltageA0.ino","qml/Roboto-Medium.ttf","README.md","Example ino/temperature_ds18b20_/temperature_ds18b20_.ino","qml/qb-light.mplstyle","qml/qb-dark.mplstyle","qml/home.png","qml/main.qml","LICENSE","qml/Roboto-Thin.ttf","qml/arduinoUno.py","qml/move.png","qml/zoom.png","qml/Popup_graph.qml","qml/chart.qml"]
+}
